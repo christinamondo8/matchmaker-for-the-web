@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!---->
+Christina Mondelli
+MatchmakerWeb
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker for the Web</title>
+</head>
+
+<body>
+    <h1>Matchmaker for the Web</h1>
+    <p>This is a computer science program designed to help
+        me find my perfect match. There will be five total 
+        questions that you have to answer. Answer a 5 if you
+        strongly agree. Answer a 4 if you agree. Answer a 3 
+        if you have no preference. Answer a 2 if you disagree. 
+        Answer a 1 if you strongly disagree. Enjoy!!</p>
+
+
+<label>Buffalo wings are the best kind of food.</label><br />
+<select id="q1">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">No preference</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
+
+<label>Almond joys are tasty.</label><br />
+<select id="q2">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">No preference</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
+
+<label>Physics is the best major.</label><br />
+<select id="q3">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="5">No preference</option>
+    <option value="5">Disagree</option>
+    <option value="5">Strongly Disagree</option>
+</select>
+<br /><br />
+
+<label>Messi is better than Ronaldo.</label><br />
+<select id="q4">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">No preference</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
+
+<label>Cold weather is better than warm weather.</label><br />
+<select id="5">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">No preference</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+
+
+<br /><br /><br />
+<button onclick= "calculateCompatibility()">calculate Compatibility</button>
+<p id="compatibility"> </p>
+<script>
+
+console.log("Starting Matchmaker...");
+function calculateCompatibility() 
+   
+    console.log("calculateCompatibility()");
+
+    const DESIRED_RESPONSE = [
+        5, 
+        1, 
+        5, 
+        5, 
+        3, 
+    ]
+
+    const MAX_SCORE = 25;
+
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+    let question4Response = document.getElementById("q4").selectedOptions[0].value;
+    let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+    let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+
+    console.log("c1="+question1Compatibility);
+    console.log("c2="+question2Compatibility);
+    console.log("c3="+question3Compatibility);
+    console.log("c4="+question4Compatibility);
+    console.log("c5="+question5Compatibility);
+
+    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+
+    totalCompatibility *=100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+    console.log("tc="+ totalCompatibility);
+    if (totalCompatibility < 50) {
+        statement = ", I don't think this is going to work out. I'm sorry!";
+    }else if (totalCompatibility < 75){
+        statement = ", This could maybe work, let's just be friends right now!";
+    }else {
+        statement = ", You are my soulmate!";
+    }
+
+
+    document.getElementById("compatibility").innHTML = "Your compatibility is: " +totalCompatibility + statement;
+
+        
+</script>
+
+</body>
+</html>
